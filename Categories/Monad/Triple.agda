@@ -24,6 +24,10 @@ record Triple {o ℓ e} (C : Category o ℓ e) : Set (o ⊔ ℓ ⊔ e) where
     .lift-comp  : ∀ {X Y Z} {f : X ⇒ T Y} {g : Y ⇒ T Z} → (g * ∘ f) * ≡ g * ∘ f *
     .{*-resp-≡} : ∀ {X Y} {f g : X ⇒ T Y} → f ≡ g → f * ≡ g *
 
+  -- convenience
+  T₁ : ∀ {X Y} → (X ⇒ Y) → (T X ⇒ T Y)
+  T₁ f = (η ∘ f) *
+
 Triple→Monad : ∀ {o ℓ e} {C : Category o ℓ e} → Triple C → Monad C
 Triple→Monad {C = C} 𝕋 = record
   { F = functor´
